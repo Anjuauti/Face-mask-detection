@@ -1,0 +1,111 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Mask Detection</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container" id="main-container">
+        <div class="header">
+            <h1><i class="fas fa-shield-virus"></i> Face Mask Detection</h1>
+            <p class="subtitle">Upload an image or use your webcam to detect face masks</p>
+        </div>
+        
+        <div class="option-cards">
+            <div class="option-card" id="image-option">
+                <div class="option-icon">
+                    <i class="fas fa-image"></i>
+                </div>
+                <h2>Image Upload</h2>
+                <p>Upload and analyze images for face mask detection</p>
+                <button class="option-btn">Select</button>
+            </div>
+            
+            <div class="option-card" id="webcam-option">
+                <div class="option-icon">
+                    <i class="fas fa-camera"></i>
+                </div>
+                <h2>Webcam</h2>
+                <p>Use your camera for real-time face mask detection</p>
+                <button class="option-btn">Select</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Image Upload Section -->
+    <div class="section-container" id="image-section" style="display:none;">
+        <div class="section-header">
+            <button class="back-btn" id="image-back-btn"><i class="fas fa-arrow-left"></i> Back</button>
+            <h2>Image Upload</h2>
+        </div>
+        
+        <div class="upload-container">
+            <div class="drop-area" id="drop-area">
+                <div class="drop-icon">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                </div>
+                <p>Drag and drop an image here</p>
+                <p class="or-divider">OR</p>
+                <button class="browse-btn" id="browse-btn">Browse Files</button>
+                <input type="file" id="file-input" accept="image/*" hidden>
+            </div>
+            
+            <div class="button-container">
+                <button id="process-btn" disabled><i class="fas fa-cogs"></i> Process Image</button>
+            </div>
+        </div>
+        
+        <div class="result-container">
+            <div class="image-container" id="original-container" style="display:none;">
+                <h3>Original Image</h3>
+                <div class="image-wrapper">
+                    <img id="original-image" src="" alt="Original image">
+                </div>
+            </div>
+            
+            <div class="image-container" id="processed-container" style="display:none;">
+                <h3>Processed Image</h3>
+                <div class="image-wrapper">
+                    <img id="processed-image" src="" alt="Processed image">
+                </div>
+                <a id="download-btn" class="download-btn" download="processed_image.jpg" href="#">
+                    <i class="fas fa-download"></i> Download Result
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Webcam Section -->
+    <div class="section-container" id="webcam-section" style="display:none;">
+        <div class="section-header">
+            <button class="back-btn" id="webcam-back-btn"><i class="fas fa-arrow-left"></i> Back</button>
+            <h2>Webcam Detection</h2>
+        </div>
+        
+        <div class="webcam-container">
+            <div class="webcam-wrapper">
+                <img id="webcam-stream" style="display:none;" width="100%">
+                <div id="webcam-placeholder">
+                    <i class="fas fa-camera"></i>
+                    <p>Click Start Camera to begin detection</p>
+                </div>
+            </div>
+            <div class="webcam-controls">
+                <button id="start-camera" class="webcam-btn start"><i class="fas fa-play"></i> Start Camera</button>
+                <button id="stop-camera" class="webcam-btn stop" disabled><i class="fas fa-stop"></i> Stop Camera</button>
+            </div>
+            <p class="note"><i class="fas fa-info-circle"></i> Allow camera access when prompted for real-time mask detection</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 Face Mask Detection App | Created by Anjali</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
